@@ -1,24 +1,36 @@
 import 'reflect-metadata';
-
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import Playlist from '../playlists/playlist.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import PlaylistSong from '../playlists/playlist-song.entity';
 
 @Entity()
 export default class Song {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column('text')
   title: string;
-  @Column('time')
-  duration: Date;
+
   @Column('text')
   artist: string;
+
+  @Column('time')
+  duration: string;
+
   @Column('timestamptz')
   releaseDate: Date;
+
   @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
-  @Column({ type: 'timestamptz', nullable: true })
+
+  @Column({
+    type: 'timestamptz',
+    nullable: true,
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   updatedAt: Date;
-  @ManyToOne(() => Playlist, (playlist) => playlist.songs, { cascade: true })
-  playlist: Playlist | null;
+
+  @OneToMany(() => PlaylistSong, (playlistSong) => playlistSong.song, {
+    cascade: true,
+  })
+  playlistSongs: PlaylistSong[];
 }

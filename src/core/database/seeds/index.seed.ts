@@ -9,7 +9,7 @@ AppDataSource.initialize()
 
     const users = await seedUsers(AppDataSource);
     const playlists = await seedPlaylists(AppDataSource, users);
-    await seedSongs(AppDataSource, playlists);
+    await seedSongs(AppDataSource);
 
     console.log('✅ Seeding completed!');
     process.exit(0);

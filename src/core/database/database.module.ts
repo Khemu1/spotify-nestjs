@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import User from './entities/users/user.entity';
 import Playlist from './entities/playlists/playlist.entity';
 import Song from './entities/songs/song.entity';
+import PlaylistSong from './entities/playlists/playlist-song.entity';
 
 @Global()
 @Module({
@@ -23,7 +24,7 @@ DataSource constructor in the TypeORM packag
       username: process.env.DATABASE_USER || 'postgres',
       password: process.env.DATABASE_PASS || '',
       database: process.env.DATABASE_NAME || 'spotify',
-      entities: [User, Playlist, Song],
+      entities: [User, Playlist, Song, PlaylistSong],
       synchronize: true,
     }),
   ],

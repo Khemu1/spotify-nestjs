@@ -5,6 +5,7 @@ import path from 'path';
 import User from './entities/users/user.entity';
 import Playlist from './entities/playlists/playlist.entity';
 import Song from './entities/songs/song.entity';
+import PlaylistSong from './entities/playlists/playlist-song.entity';
 
 config();
 
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
   username: process.env.DATABASE_USER || 'postgres',
   password: process.env.DATABASE_PASS || '',
   database: process.env.DATABASE_NAME || 'spotify',
-  entities: [User, Playlist, Song],
+  entities: [User, Playlist, Song, Playlist, PlaylistSong],
 
   migrations: [path.join(__dirname, '/migrations/*.ts')], // ✅ Works in CommonJS
   synchronize: true,

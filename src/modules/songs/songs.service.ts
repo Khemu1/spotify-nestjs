@@ -13,9 +13,9 @@ export class SongsService {
     private readonly songsRepository: SongsRepository,
   ) {}
 
-  async create(songData: CreateSongDTO): Promise<Song> {
-    const newSong = this.songsRepository.create(songData);
-    return this.songsRepository.save(newSong);
+  async create(songData: CreateSongDTO) {
+    const newSong = this.songsRepository.createSongs(songData);
+    return newSong;
   }
 
   async findAll(queries: PaginationDTO) {
