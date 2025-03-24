@@ -18,7 +18,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DATABASE_NAME || 'spotify',
   entities: [User, Playlist, Song, Playlist, PlaylistSong],
 
-  migrations: [path.join(__dirname, '/migrations/*.ts')], // ✅ Works in CommonJS
+  migrations: [path.join(__dirname, '/migrations/*.ts')],
   synchronize: true,
   logging: true,
 });

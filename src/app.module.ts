@@ -6,6 +6,7 @@ import { SongsModule } from './modules/songs/songs.module';
 import { LoggerMiddleware } from './core/middleware/logger/logger.middleware';
 import { DatabaseModule } from './core/database/database.module';
 import { UsersModule } from './modules/users/users.module';
+import { PlaylistsModule } from './modules/playlists/playlists.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UsersModule } from './modules/users/users.module';
     SongsModule,
     DatabaseModule,
     UsersModule,
+    PlaylistsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -20,6 +22,6 @@ import { UsersModule } from './modules/users/users.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('songs'); //  middleware to /songs
-    // consumer.apply(LoggerMiddleware).forRoutes({ path: 'songs', method: RequestMethod.POST }); // ✅ Apply only to POST /songs
+    // consumer.apply(LoggerMiddleware).forRoutes({ path: 'songs', method: RequestMethod.POST }); // Apply only to POST /songs
   }
 }
